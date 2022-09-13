@@ -2,9 +2,6 @@ package main
 
 import "fmt"
 
-func main() {
-}
-
 // i与j进行交换
 func swap(arr []int, i int, j int) {
 	temp := arr[i]

@@ -1,0 +1,46 @@
+DML 数据操作
+--新增表字段
+alert table tablename add 列名 类型名
+
+--新增数据
+insert into tablename(字段名) values("xxxx")
+
+--删除数据
+delete from tablename where a="xxxx"
+
+--修改
+update tablename set a="xxxx"
+
+DQL 数据库查询
+
+select * from tablename where a="xxxx"
+and
+or
+between and
+like
+is null is not null
+in
+distinct 去重
+order by 排序 desc asc
+count avg max min sum 函数
+group by 根据xxx分组，然后使用聚合函数
+limit 分页
+ limit 0，3 第一页
+ limit 3,6 第二页
+显示内联
+select * from table1 t1
+[left right ]join table2 t2 on t1.id=t2.id
+
+子查询
+
+having
+eg：
+select id,sum(x) c1 from tablename
+group by
+having c1>5
+
+select 语句执行顺序大致是：
+where（数据查询） -> group by（数据编组） -> having（结果过滤） -> order by（排序）
+
+
+

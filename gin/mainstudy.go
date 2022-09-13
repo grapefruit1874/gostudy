@@ -14,9 +14,10 @@ import (
 	"time"
 )
 
-func main() {
+func mainstudy() {
 	//默认已经连接了logger and recovery 中间件
 	r := gin.Default()
+	//r.LoadHTMLGlob() 加载html模版
 	r.GET("/ping", func(context *gin.Context) {
 		context.JSON(200, gin.H{
 			"message": "pong",
@@ -147,7 +148,7 @@ func main() {
 		//返回值：可以是xml,json,yaml,protobuf
 		//gin.H=> 可以自定义
 		//context.SecureJSON()//可以防止json劫持，如果返回的是数组会默认在前面加上 "while(1)"
-		//context.JSONP()//在不同域中从一个服务器请求数据，如果请求参数中存在callback，添加callback到response.body
+		//context.JSONP()//可以传递回调函数，在不同域中从一个服务器请求数据，如果请求参数中存在callback，添加callback到response.body
 		//eg:curl http://xxxx/JSONP?callback=x 将会输出 x({xx:1,xxx:2})
 
 		//从文件中提供数据
@@ -172,6 +173,16 @@ func main() {
 		go func() {
 			log.Println("do!" + ccp.Request.URL.Path)
 		}()
+
+		//Cookie 保存在客户端
+		context.Cookie("username") //获取
+		//value=""或者maxAge=-1 为删除
+		context.SetCookie("username", "xiyou", -1, "./", "localhost", false, false)
+		//设置
+		context.SetCookie("username", "xiyou", 3600, "./", "localhost", false, false)
+		//共享 2级域名 a.baidu.com b.baidu.com
+		context.SetCookie("username", "xiyou", 3600, "./", ".baidu.com", false, false)
+		//session gin没有，需要引入 保存在服务器
 	})
 	//静态文件
 	r.Static("/assets", "./assets")

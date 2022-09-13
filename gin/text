@@ -1,0 +1,62 @@
+热加载：
+1,go get github.com/pilu/fresh
+go get 在带用go.mod的版本中，go get只是下载代码和帮助修改go.mod
+要安装使用需要使用 go install
+
+执行 fresh命令 根目录
+
+2,go get -u github.com/codegingsta/gin
+gin run main.go
+
+gin前端语法：
+1.{{.}} 输出数据
+2.{{$t:=.title}} 定义变量
+3，比较函数 eq ==
+ne !=
+lt <
+le <=
+gt >
+ge >=
+4，条件判断
+{{if gt .score 60}}
+{{else}}
+{{end}}
+5,循环
+{{range $k,$v:=.arr}}
+{{$v}}
+{{else}}
+arr长度为0
+{{end}}
+6，.user=>.
+{{with .user}}
+{{.name}}
+{{.add}}
+{{end}}
+7, define end 自定义前端模版 成对出现
+8.模版嵌套{{template:"xx.html" .}}
+
+unmarshal //转结构体
+
+//基本结构体继承 basecontroller
+//gin中间件，可以注册多个中间件，执行顺序，洋葱模式，拦截器链
+//中间件的作用域：全局中间件
+//context.Next() //执行函数剩余部分
+//context.Abort() //终止函数剩余部分
+
+//类型断言:x.(T)
+
+----代码分层
+//路由层
+//中间件层
+//控制器层
+//工具层
+
+
+
+//数据库 gorm
+//结构体首字母大写，可以省去数据库下划线
+//TableName 指定表名
+//.Debug() 打印过程语句 nice!!!
+//所有字段的零值，如果有默认值，都会变成默认值 解决方式：使用指针，或者sql.null..
+
+

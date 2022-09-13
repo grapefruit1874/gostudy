@@ -1,0 +1,27 @@
+代码辅助工具
+1,gofmt 保存的时候自动 格式化go代码
+
+2,goimports  保存的时候自动导入处理包
+
+3,gometalinter 保存的时候自动检查go语法
+go get -u github.com/alecthomas/gometalinter
+gometalinter --install --update
+
+4,govet
+5,golint
+6,gorename
+重构工具
+7,godegraph
+
+
+--逃逸分析指令
+go build -gcflags '-m -l' demo.go
+# 或者再加个 -m 查看更详细信息
+go build -gcflags '-m -m -l' demo.go
+
+--发布 交叉编译
+windows
+linux
+amd64
+--GOOS 目标服务器 GOARCH 当前机器
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build main.go
